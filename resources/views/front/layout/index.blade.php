@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zxx">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 <head>
     <meta charset="UTF-8">
     @yield('title')
@@ -8,166 +7,250 @@
     <meta name="keywords" content="Uniform, Gifts">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&amp;display=swap"
-        rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="{{asset('front/css/bootstrap.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/font-awesome.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/nice-select.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/owl.carousel.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/magnific-popup.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/slicknav.min.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{asset('front/css/style.css')}}" type="text/css">
-    <link href="{{asset('admin/assets/css/toastr.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('new_theme/css/bootstrap.min.css')}}" type="text/css" />
 </head>
-
 <body>
-    <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    
-    <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" name="keyword" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
-
-    <!-- Header Section Begin -->
     <header class="header-section">
-        <div class="container-fluid">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        <a href="mailto:{{App\Models\Information::email()}}" style="color:black;" class="__cf_email__" >{{App\Models\Information::email()}}</a>
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        <a href="tel:{{App\Models\Information::phone()}}" style="color:black;">{{App\Models\Information::phone()}}</a>
+                    </div>
+                </div>
+                <div class="ht-right">
+                    <div class="top-social">
+                        <a href="{{App\Models\Information::facebook()}}"><i class="ti-facebook"></i></a>
+                        <a href="{{App\Models\Information::twitter()}}"><i class="ti-twitter-alt"></i></a>
+                        {{-- <a href="{{App\Models\Information::youtube()}}"><i class="fa-youtube-play"></i></a> --}}
+                        <a href="{{App\Models\Information::pinterest()}}"><i class="ti-pinterest"></i></a>
+                        <a href="{{App\Models\Information::instagram()}}"><i class="ti-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
             <div class="inner-header">
-                <div class="logo">
-                    <a href="{{url('')}}"><img src="{{asset('front/img/logo.png')}}" alt=""></a>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="logo text-center">
+                            <a href="{{url('/')}}">
+                                <img src="{{asset('new_theme/img/xlogo.png.pagespeed.ic.ri45aVfZO2.png')}}" alt="">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="header-right">
-                    @if(Route::currentRouteName() == 'category.index' || Route::currentRouteName() == 'brand.index' || Route::currentRouteName() == 'product.index')
-                    <img src="{{asset('front/img/icons/search.png')}}" alt="" class="search-trigger">
-                    @endif
-                    {{-- <img src="{{asset('front/img/icons/man.png')}}" alt="">
-                    <a href="#">
-                        <img src="{{asset('front/img/icons/bag.png')}}" alt="">
-                        <span>2</span>
-                    </a> --}}
-                </div>
-                <nav class="main-menu mobile-menu">
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li><a class="{{Request::is('/')?'active':''}}" href="{{url('/')}}">Home</a></li>
-                        <li><a class="{{Request::is('categories') || Request::is('category/*') ?'active':''}}" href="{{route('category.index')}}">Categories</a>
-                            <ul class="sub-menu">
+                        <li class="{{Request::is('about_us') ?'active':''}}" ><a href="{{route('about_us.index')}}">About Us</a></li>
+                        <li class="{{Request::is('services') || Request::is('service/*') ?'active':''}}" ><a href="{{route('service.index')}}">Services</a></li>
+                        <li class="{{Request::is('our_happy_client') ?'active':''}}" ><a href="{{url('our_happy_client')}}">Our Happy Client</a></li>
+                        {{-- <li class="{{Request::is('categories') || Request::is('category/*') ?'active':''}}">
+                            <a  href="{{route('category.index')}}">Categories</a>
+                            <ul class="dropdown">
                                 @foreach(App\Models\Category::orderBy('display_order','asc')->take(5)->get() as $category)
                                 <li><a href="{{route('category.show',str_replace(' ', '_',$category->name))}}">{{$category->name}}</a></li>
                                 @endforeach
                             </ul>
-                        </li>
-                        <li><a class="{{Request::is('brands') || Request::is('brand/*') ?'active':''}}" href="{{route('brand.index')}}">Brands</a>
-                            <ul class="sub-menu">
+                        </li> --}}
+                        {{-- <li class="{{Request::is('brands') || Request::is('brand/*') ?'active':''}}">
+                            <a  href="{{route('brand.index')}}">Brands</a>
+                            <ul class="dropdown">
                                 @foreach(App\Models\Brand::orderBy('display_order','asc')->take(5)->get() as $brand)
                                 <li><a href="{{route('brand.show',str_replace(' ', '_',$brand->name))}}">{{$brand->name}}</a></li>
                                 @endforeach
                             </ul>
-                        </li>
-                        <li><a class="{{Request::is('products') || Request::is('product/*') ?'active':''}}" href="{{route('product.index')}}">Product</a></li>
-                        <li><a class="{{Request::is('about_us') ?'active':''}}" href="{{route('about_us.index')}}">About Us</a></li>
-                        <li><a class="{{Request::is('contact_us') ?'active':''}}" href="{{route('contact_us.index')}}">Contact Us</a></li>
+                        </li> --}}
+                        {{-- <li class="{{Request::is('products') || Request::is('product/*') ?'active':''}}"><a href="{{route('product.index')}}">Product</a></li> --}}
+                        <li class="{{Request::is('contact_us') ?'active':''}}"><a  href="{{route('contact_us.index')}}">Contact Us</a></li>
                     </ul>
                 </nav>
+                <div id="mobile-menu-wrap"></div>
             </div>
         </div>
     </header>
-    <!-- Header End -->
+    <section class="hero-section">
+        <div class="hero-items owl-carousel">
+            @foreach(App\Models\Slider::orderBy('display_order','asc')->get() as $slider)
+            <div class="single-hero-items set-bg" data-setbg="{{asset($slider->image)}}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <h1>{{$slider->title}}</h1>
+                            <p>{!! $slider->description !!}</p>
+                            {{-- <a href="#" class="primary-btn">Shop Now</a> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
     @yield('content')
-    <!-- Footer Section Begin -->
-    <footer class="footer-section spad">
+    <div class="map spad">
         <div class="container">
-            <div class="footer-widget">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Categories</h4>
-                            <ul>
-                              @foreach(App\Models\Category::take(5)->orderBy('display_order','ASC')->get() as $category)
-                              <li><a style="color:white;" href="{{route('category.show',str_replace(' ', '_',$category->name))}}"> <span class="pull-right">({{$category->products->count()}})</span>{{@$category->name}}</a></li>
-                              @endforeach
-                                <li><a style="color:white;" href="{{route('category.index')}}">  <span class="pull-right">({{App\Models\Category::count()}})</span>All Categories</a></li>
-                            </ul>
+            <div class="map-inner">
+                <iframe 
+                    src="https://maps.google.com/maps?q=Lake%20Plaza%20Tower,%20Cluster%20T,Jumeirah%20Lakes%20Towers,Dubain,%20UAE&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                    height="610" style="border:0" allowfullscreen="">
+                </iframe>
+                <div class="icon">
+                    <i class="fa fa-map-marker"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="contact-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-title">
+                        <h4>Contacts Us</h4>
+                    </div>
+                    <div class="contact-widget">
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                                <i class="ti-location-pin"></i>
+                            </div>
+                            <div class="ci-text">
+                                <span>Address:</span>
+                                <p>{{App\Models\Information::address()}}</p>
+                            </div>
+                        </div>
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                            <i class="ti-mobile"></i>
+                            </div>
+                            <div class="ci-text">
+                            <span>Phone:</span>
+                            <p><a href="tel:{{App\Models\Information::phone()}}" style="color:black;">{{App\Models\Information::phone()}}</a></p>
+                            </div>
+                        </div>
+                        <div class="cw-item">
+                            <div class="ci-icon">
+                            <i class="ti-email"></i>
+                            </div>
+                            <div class="ci-text">
+                                <span>Email:</span>
+                                <p>
+                                    <a href="mailto:{{App\Models\Information::email()}}" style="color:black;" class="__cf_email__" >{{App\Models\Information::email()}}</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Brands</h4>
-                            <ul>
-                              @foreach(App\Models\Brand::take(5)->orderBy('display_order','ASC')->get() as $brand)
-                              <li><a style="color:white;" href="{{route('brand.show',str_replace(' ', '_',$brand->name))}}"> <span class="pull-right">({{$brand->products->count()}})</span>{{@$brand->name}}</a></li>
-                              @endforeach
-                                <li><a style="color:white;" href="{{route('brand.index')}}">  <span class="pull-right">({{App\Models\Brand::count()}})</span>All Brands</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Products</h4>
-                            <ul>
-                              @foreach(App\Models\Product::take(5)->orderBy('display_order','ASC')->get() as $product)
-                              <li><a style="color:white;" href="{{route('product.show',str_replace(' ', '_',$product->name))}}"> {{@$product->name}}</a></li>
-                              @endforeach
-                                <li><a style="color:white;" href="{{route('product.index')}}">  <span class="pull-right">({{App\Models\Product::count()}})</span>All Products</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Services</h4>
-                            <ul>
-                              @foreach(App\Models\Service::take(5)->orderBy('display_order','ASC')->get() as $service)
-                              <li style="color:white;"><a style="color:white;" href="{{route('service.show',str_replace(' ', '_',$service->title))}}"> {{@$service->title}}</a></li>
-                              @endforeach
-                                <li><a href="{{route('service.index')}}"  style="color:white;">  <span class="pull-right">({{App\Models\Service::count()}})</span>All Services</a></li>
-                            </ul>
+                </div>
+                <div class="col-lg-6 offset-lg-1">
+                    <div class="contact-form">
+                        <div class="leave-comment">
+                            <h4>Leave A Comment</h4>
+                            <p>Our staff will call back later and answer your questions.</p>
+                            <form action="{{route('admin.message.store')}}"  method="post" class="comment-form">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text"  name="name" placeholder="Your name" required>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="text" name="email" placeholder="Your email" required>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <input type="text" name="subject" placeholder="Subject" required>
+                                        <textarea name="message" placeholder="Your message"></textarea>
+                                        <button type="submit" class="site-btn">Send message</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="social-links-warp">
-			<div class="container">
-				<div class="social-links">
-					<a href="{{App\Models\Information::instagram()}}" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-					<a href="{{App\Models\Information::pinterest()}}" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-					<a href="{{App\Models\Information::facebook()}}" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-					<a href="{{App\Models\Information::twitter()}}" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-					<a href="{{App\Models\Information::youtube()}}" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-				</div>
-			</div>
+    </section>
 
-			<div class="container text-center pt-5">
-				<p>Copyright &copy;2022 All rights reserved by <a href="{{url('/')}}" target="_blank">uniform.com</a></p>
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                        <a href="{{url('/')}}"><img src="{{asset('new_theme/img/xfooter-logo.png.pagespeed.ic.J_w5R0L8zD.png')}}" alt=""></a>
+                        </div>
+                        <div class="footer-social">
+                            <a href="{{App\Models\Information::instagram()}}" ><i class="fa fa-instagram"></i></a>
+                            <a href="{{App\Models\Information::pinterest()}}" ><i class="fa fa-pinterest"></i></a>
+                            <a href="{{App\Models\Information::facebook()}}" ><i class="fa fa-facebook"></i></a>
+                            <a href="{{App\Models\Information::twitter()}}" ><i class="fa fa-twitter"></i></a>
+                            {{-- <a href="{{App\Models\Information::youtube()}}" ><i class="fa fa-youtube"></i><span>youtube</span></a> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widget">
+                    <h5>My Account</h5>
+                        <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Shopping Cart</a></li>
+                        <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widget">
+                    <h5>My Account</h5>
+                        <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Shopping Cart</a></li>
+                        <li><a href="#">Shop</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
 
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="{{url('/')}}" >Fashi</a>
 
-		</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </footer>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="{{asset('front/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{asset('front/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('front/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('front/js/jquery.slicknav.js')}}"></script>
-    <script src="{{asset('front/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('front/js/jquery.nice-select.min.js')}}"></script>
-    <script src="{{asset('front/js/mixitup.min.js')}}"></script>
-    <script src="{{asset('front/js/main.js')}}"></script>
-	<script src="{{asset('admin/assets/js/toastr.js')}}"></script>
-	@toastr_render
-    @yield('scripts')
+
+<script src="{{asset('new_theme/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('new_theme/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('new_theme/js/jquery-ui.min.js')}}"></script>
+<script src="{{asset('new_theme/js/jquery.min.js')}}"></script>
+<script>eval(mod_pagespeed_s2yWe5UonU);</script>
+<script>eval(mod_pagespeed_5Oi900R5Mr);</script>
+<script>eval(mod_pagespeed_y24CbgPGh9);</script>
+<script>eval(mod_pagespeed_2WJFdZORSP);</script>
+<script>eval(mod_pagespeed_gwflC3jfEs);</script>
+<script src="{{asset('new_theme/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('new_theme/js/main.js')}}"></script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"7616c5bb3d5cd1d8","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2022.10.3","si":100}' crossorigin="anonymous"></script>
 </body>
+
+<!-- Mirrored from preview.colorlib.com/theme/fashi/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 28 Oct 2022 21:31:15 GMT -->
 </html>

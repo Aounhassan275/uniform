@@ -28,7 +28,7 @@ class PageController extends Controller
     }
     public function services()
     {
-        $services = Service::paginate(5);
+        $services = Service::paginate(30);
         return view('front.service.index',compact('services'));
     }
     public function showServiceNext($title)

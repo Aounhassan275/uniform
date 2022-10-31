@@ -38,7 +38,7 @@ class ServiceController extends Controller
     {
         $service = Service::create($request->all());
         toastr()->success('Service Created successfully');
-        return redirect()->back();  
+        return redirect()->to(route('admin.service.index'));  
     }
 
     /**

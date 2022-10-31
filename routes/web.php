@@ -65,6 +65,7 @@ Route::group(['middleware' => 'website'], function () {
   Route::get('service/{title}', 'Front\PageController@showServiceNext')->name('service.show');
   Route::view('contact_us', 'front.contact.index')->name('contact_us.index');
   Route::view('about_us', 'front.about.index')->name('about_us.index');
+  Route::view('our_happy_client', 'front.our_happy_client.index')->name('our_happy_client.index');
   Route::view('privacy_policy', 'front.privacy.index')->name('privacy_policy.index');
 });
 

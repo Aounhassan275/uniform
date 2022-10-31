@@ -37,6 +37,10 @@ Create Service
                         <textarea class="form-control summernote"  id="description" name="description" required></textarea>
                     </div>
                     <div class="form-group">
+                        <label>Title Description</label>
+                        <textarea name="title_description" class="form-control" required></textarea>
+                    </div>  
+                    <div class="form-group">
                         <label>Display Order</label>
                         <input type="number" name="display_order" placeholder="Enter Display Order" class="form-control" required>
                     </div>  

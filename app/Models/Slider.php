@@ -11,6 +11,6 @@ class Slider extends Model
         'title', 'image','description','display_order'
     ];
     public function setImageAttribute($value){
-        $this->attributes['image'] = ImageHelper::saveImage($value,'/uploaded_images/');
+        $this->attributes['image'] = ImageHelper::saveSliderImage($value,'/uploaded_images/');
     }
 }

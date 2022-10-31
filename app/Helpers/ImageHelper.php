@@ -17,6 +17,17 @@ class ImageHelper
         return $path.$filename;
     }
 
+    public static function saveSliderImage($imagefile,$path)
+    {
+        $originalImage=$imagefile;
+        $myImage = Image::make($originalImage);
+        $myImage->resize(1919,725);
+        $originalPath = public_path().$path;
+        $filename = rand(0,100).time().'.'.$originalImage->getClientOriginalExtension();
+        $myImage->save($originalPath.$filename);
+        return $path.$filename;
+    }
+
     public static function saveImageFromApi($base64Image,$path){
 
         $originalImage=base64_decode(str_replace('data:image/png;base64,', '', $base64Image));

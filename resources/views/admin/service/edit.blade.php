@@ -39,6 +39,10 @@
                         <textarea class="form-control summernote"  id="description" name="description" required>{{$service->description}}</textarea>
                     </div>
                     <div class="form-group">
+                        <label>Title Description</label>
+                        <textarea name="title_description" class="form-control" required>{{@$service->title_description}}</textarea>
+                    </div>  
+                    <div class="form-group">
                         <label>Display Order</label>
                         <input type="number" name="display_order" placeholder="Enter Display Order" class="form-control" value="{{$service->display_order}}" required>
                     </div> 

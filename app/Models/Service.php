@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     protected $fillable = [
-        'title', 'image','description','display_order'
+        'title', 'image','description','display_order','title_description'
     ];
     public function setImageAttribute($value){
         $this->attributes['image'] = ImageHelper::saveImage($value,'/uploaded_images/');
